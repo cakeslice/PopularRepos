@@ -14,6 +14,8 @@ export type Repository = {
 	stargazers_count: number
 	language: string
 	forks_count: number
+	//
+	isStarred?: boolean
 }
 
 export type RepositorySearch = {

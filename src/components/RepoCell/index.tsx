@@ -1,7 +1,12 @@
 import { Repository } from '@/models/repository'
+import { useFavoritesContext } from '@/state/FavoritesContext'
 import { Button, Chip, Link } from '@nextui-org/react'
 
-export const RepoCell = (repo: Repository, columnKey: string) => {
+export const RepoCell = (repo: Repository, columnKey: string, favorite?: boolean) => {
+	const favorites = useFavoritesContext()
+
+	const isStarred = repo.isStarred || favorite
+
 	switch (columnKey) {
 		case 'info':
 			return (
@@ -24,13 +29,22 @@ export const RepoCell = (repo: Repository, columnKey: string) => {
 					<Button
 						as={Link}
 						showAnchorIcon
-						variant='bordered'
+						variant='flat'
 						href={repo.html_url}
 						target='_blank'
 					>
 						Fork
 					</Button>
-					<Button variant='bordered' isIconOnly color='danger' aria-label='Like'></Button>
+					<Button
+						className={isStarred ? 'bg-red-500/75' : 'opacity-50'}
+						variant={isStarred ? 'solid' : 'flat'}
+						isIconOnly
+						color={isStarred ? 'danger' : 'default'}
+						aria-label='Like'
+						onClick={() => favorites?.toggle(repo)}
+					>
+						{isStarred ? '❤️' : '🤍'}
+					</Button>
 				</div>
 			)
 		default:
