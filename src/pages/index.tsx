@@ -10,7 +10,7 @@ export default function Home() {
 		<main className={`flex min-h-screen flex-col p-3 md:px-24 md:py-10 ${inter.className}`}>
 			<FavoritesProvider>
 				<Tabs aria-label='Screens'>
-					<Tab key='popular' title='Popular'>
+					<Tab key='popular' title='Trending'>
 						<PopularRepos />
 					</Tab>
 					<Tab key='favorites' title='Favorites'>

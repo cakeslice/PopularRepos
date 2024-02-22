@@ -34,6 +34,10 @@ const maxResults = 1000
 const sortBy = 'stars'
 const orderBy = 'desc'
 
+const lastWeek = new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000)
+	.toISOString()
+	.split('T')[0]
+
 export const PopularRepos = () => {
 	const [page, setPage] = useState(1)
 	const [search, setSearch] = useState('')
@@ -48,7 +52,7 @@ export const PopularRepos = () => {
 
 	const endpoint = useMemo(
 		() =>
-			`${githubApiEndpoint}/search/repositories?q=created:2017-01-10 ${encodeURIComponent(debouncedSearch) + languagesQuery}&sort=${sortBy}&order=${orderBy}&per_page=${rowsPerPage}&page=${page}`,
+			`${githubApiEndpoint}/search/repositories?q=created:${lastWeek} ${encodeURIComponent(debouncedSearch) + languagesQuery}&sort=${sortBy}&order=${orderBy}&per_page=${rowsPerPage}&page=${page}`,
 		[languagesQuery, page, debouncedSearch]
 	)
 	const { data, isLoading, error } = useSWR<RepositorySearch>(endpoint, fetcher, {
