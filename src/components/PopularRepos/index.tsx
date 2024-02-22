@@ -13,7 +13,6 @@ import {
 	Table,
 	TableBody,
 	TableCell,
-	TableColumn,
 	TableHeader,
 	TableRow,
 } from '@nextui-org/react'
@@ -21,13 +20,7 @@ import { useDebounce } from '@uidotdev/usehooks'
 import { useMemo, useState } from 'react'
 import useSWR from 'swr'
 import { RepoCell } from '../RepoCell'
-
-const tableColumns = [
-	{ name: 'REPO', uid: 'info' },
-	{ name: 'STARS', uid: 'stars' },
-	{ name: 'LANGUAGE', uid: 'language' },
-	{ name: '', uid: 'actions' },
-]
+import { renderColumns, tableColumns } from '../ReposTableColumn'
 
 const rowsPerPage = 10
 const maxResults = 1000
@@ -126,7 +119,7 @@ export const PopularRepos = () => {
 				}
 			>
 				<TableHeader columns={tableColumns}>
-					{(column) => <TableColumn key={column.uid}>{column.name}</TableColumn>}
+					{(column) => renderColumns(column)}
 				</TableHeader>
 				<TableBody
 					isLoading={isLoading}

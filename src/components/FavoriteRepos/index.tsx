@@ -1,30 +1,14 @@
 import { useFavoritesContext } from '@/state/FavoritesContext'
-import {
-	Spinner,
-	Table,
-	TableBody,
-	TableCell,
-	TableColumn,
-	TableHeader,
-	TableRow,
-} from '@nextui-org/react'
+import { Spinner, Table, TableBody, TableCell, TableHeader, TableRow } from '@nextui-org/react'
 import { RepoCell } from '../RepoCell'
-
-const tableColumns = [
-	{ name: 'REPO', uid: 'info' },
-	{ name: 'STARS', uid: 'stars' },
-	{ name: 'LANGUAGE', uid: 'language' },
-	{ name: '', uid: 'actions' },
-]
+import { renderColumns, tableColumns } from '../ReposTableColumn'
 
 export const FavoriteRepos = () => {
 	const favorites = useFavoritesContext()
 
 	return (
 		<Table aria-label='Favorite repositories table'>
-			<TableHeader columns={tableColumns}>
-				{(column) => <TableColumn key={column.uid}>{column.name}</TableColumn>}
-			</TableHeader>
+			<TableHeader columns={tableColumns}>{(column) => renderColumns(column)}</TableHeader>
 
 			<TableBody
 				emptyContent='Your favorite repos will show up here'
