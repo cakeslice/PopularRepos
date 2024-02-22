@@ -82,12 +82,18 @@ export const PopularRepos = () => {
 						<Input
 							label='Search'
 							placeholder='Example: Tailwind'
-							onChange={(e) => setSearch(e.target.value)}
+							onChange={(e) => {
+								setSearch(e.target.value)
+								setPage(1)
+							}}
 						></Input>
 						<Select
 							placeholder='Select a language'
 							selectionMode='multiple'
-							onChange={(e) => setLanguages(e.target.value)}
+							onChange={(e) => {
+								setLanguages(e.target.value)
+								setPage(1)
+							}}
 						>
 							{programmingLanguages.map((item) => (
 								<SelectItem key={item} value={item}>
