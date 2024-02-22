@@ -141,10 +141,7 @@ export const PopularRepos = () => {
 					{(item) => (
 						<TableRow key={item.name}>
 							{(columnKey) => (
-								<TableCell
-									key={columnKey}
-									align={columnKey === 'stars' ? 'right' : 'left'}
-								>
+								<TableCell key={columnKey}>
 									{RepoCell(item, `${columnKey}`)}
 								</TableCell>
 							)}

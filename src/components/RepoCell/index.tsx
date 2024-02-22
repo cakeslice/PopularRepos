@@ -25,7 +25,7 @@ export const RepoCell = (repo: Repository, columnKey: string, favorite?: boolean
 			return <b>{repo.language}</b>
 		case 'actions':
 			return (
-				<div className='flex gap-2'>
+				<div className='flex justify-end gap-2'>
 					<Button
 						as={Link}
 						showAnchorIcon

@@ -34,9 +34,7 @@ export const FavoriteRepos = () => {
 				{(item) => (
 					<TableRow key={item.name}>
 						{(columnKey) => (
-							<TableCell align={columnKey === 'stars' ? 'right' : 'left'}>
-								{RepoCell(item, `${columnKey}`, true)}
-							</TableCell>
+							<TableCell>{RepoCell(item, `${columnKey}`, true)}</TableCell>
 						)}
 					</TableRow>
 				)}
